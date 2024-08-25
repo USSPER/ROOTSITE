@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mis Archivos</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #121212; /* Fondo oscuro */
+            color: white; /* Texto blanco */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #444; /* Borde más oscuro */
+            border-radius: 10px;
+            background-color: #1e1e1e; /* Fondo de contenedor más claro */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra suave */
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #00bcd4; /* Color turquesa para el título */
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #00bcd4; /* Cambia el color de los enlaces */
+            transition: color 0.3s; /* Transición suave para el color */
+        }
+        a:hover {
+            color: #ff4081; /* Color rosa al pasar el ratón */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #262626;
+            color: white;
+        }
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .error {
+            color: #ff4081;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mis Archivos</h1>
+        <ul>
+            {% for file in files %}
+                <li><a href="/downloads/{{ file }}">{{ file }}</a></li>
+            {% endfor %}
+        </ul>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="POST">
+            <input type="text" name="download_url" placeholder="Introduce un enlace de descarga">
+            <input type="submit" value="Descargar">
+        </form>
+    </div>
+</body>
+</html>
